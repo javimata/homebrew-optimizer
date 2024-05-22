@@ -1,4 +1,6 @@
 class Optimizer < Formula
+  include Language::Python::Virtualenv
+
   desc "Optimiza imágenes en la carpeta actual"
   homepage "https://github.com/javimata/homebrew-optimizer"
   url "https://github.com/javimata/homebrew-optimizer/releases/download/1.0/optimize_images-1.0.tar.gz"
@@ -8,13 +10,15 @@ class Optimizer < Formula
   depends_on "python@3.9"
 
   def install
-    system "pip3", "install", "pillow"
+    venv = virtualenv_create(libexec, "python3")
+    venv.pip_install "pillow"
 
-    bin.install "optimize_images.py"
     (bin/"optimizr").write <<~EOS
       #!/bin/bash
-      exec python3 #{bin}/optimize_images.py "$@"
+      exec "#{libexec}/bin/python3" "#{libexec}/bin/optimize_images.py" "$@"
     EOS
+
+    libexec.install Dir["*"]
   end
 
   test do
