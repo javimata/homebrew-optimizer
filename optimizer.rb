@@ -5,8 +5,8 @@ class Optimizer < Formula
   sha256 "893c8a847342c9338068dca0f93f1a27e4c2449916387725798ee8b476dc09af"
   license "MIT"
 
-  depends_on "python@3.9"
   depends_on "pillow"
+  depends_on "python@3.9"
 
   def install
     bin.install "optimize_images.py" => "optimizr"
