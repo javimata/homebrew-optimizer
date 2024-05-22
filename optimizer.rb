@@ -10,11 +10,11 @@ class Optimizer < Formula
   depends_on "python@3.9"
 
   def install
-    bin.install "optimize_images.py" => "optimizr"
-    chmod 0755, "#{bin}/optimizr"
+    bin.install "optimize_images.py" => "optimiz"
+    chmod 0755, "#{bin}/optimiz"
   end
 
   test do
-    system "#{bin}/optimizr", "--version"
+    system "#{bin}/optimiz", "--version"
   end
 end
