@@ -3,6 +3,7 @@
 import os
 import argparse
 import imageio
+from skimage.transform import resize
 
 def main():
     parser = argparse.ArgumentParser(description="Optimize images in the current directory.")
@@ -23,17 +24,19 @@ def main():
     for filename in os.listdir('.'):
         if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp', '.webp')):
             input_path = os.path.join('.', filename)
-            output_path = os.path.join(args.output_dir, filename)
             
-            # Determine the output format
-            output_format = args.format if args.format else None
+            # Change the output file extension if a format is specified
+            if args.format:
+                filename = os.path.splitext(filename)[0] + '.' + args.format.lower()
+
+            output_path = os.path.join(args.output_dir, filename)
 
             # Read the image
             img = imageio.imread(input_path)
 
             # Resize the image if necessary
             if args.width or args.height:
-                img = imageio.imresize(img, (args.height or img.shape[0], args.width or img.shape[1]))
+                img = resize(img, (args.height or img.shape[0], args.width or img.shape[1]))
 
             # Save the image
-            imageio.imsave(output_path, img, format=output_format, quality=args.quality)
+            imageio.imsave(output_path, img, quality=args.quality)

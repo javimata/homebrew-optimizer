@@ -15,6 +15,7 @@ class Optimizer < Formula
     EOS
 
     system "pip3", "install", "imageio"
+    system "pip3", "install", "scikit-image"
   end
 
   test do
