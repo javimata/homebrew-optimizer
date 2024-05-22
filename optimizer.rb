@@ -8,13 +8,13 @@ class Optimizer < Formula
   depends_on "python@3.9"
 
   def install
+    system "pip3", "install", "pillow"
+
     bin.install "optimize_images.py"
     (bin/"optimizr").write <<~EOS
       #!/bin/bash
       exec python3 #{bin}/optimize_images.py "$@"
     EOS
-
-    system "pip3", "install", "pillow"
   end
 
   test do
