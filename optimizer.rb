@@ -14,8 +14,7 @@ class Optimizer < Formula
       exec python3 #{bin}/optimize_images.py "$@"
     EOS
 
-    system "pip3", "install", "imageio"
-    system "pip3", "install", "scikit-image"
+    system "pip3", "install", "pillow"
   end
 
   test do

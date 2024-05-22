@@ -2,13 +2,12 @@
 
 import os
 import argparse
-import imageio
-from skimage.transform import resize
+from PIL import Image
 
 def main():
     parser = argparse.ArgumentParser(description="Optimize images in the current directory.")
     parser.add_argument('-o', '--output_dir', type=str, default='out', help="Output directory to save optimized images.")
-    parser.add_argument('-f', '--format', type=str, help="Format to save images (e.g., 'JPEG', 'PNG', 'WEBP').")
+    parser.add_argument('-f', '--format', type=str, help="Format to save images (e.g., 'JPEG', 'PNG').")
     parser.add_argument('-w', '--width', type=int, help="Width to resize images to.")
     parser.add_argument('-t', '--height', type=int, help="Height to resize images to.")
     parser.add_argument('-q', '--quality', type=int, default=85, help="Quality of the optimized images (1-100).")
@@ -22,7 +21,7 @@ def main():
     
     # Process each image in the current directory
     for filename in os.listdir('.'):
-        if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp', '.webp')):
+        if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
             input_path = os.path.join('.', filename)
             
             # Change the output file extension if a format is specified
@@ -31,12 +30,14 @@ def main():
 
             output_path = os.path.join(args.output_dir, filename)
 
-            # Read the image
-            img = imageio.imread(input_path)
+            # Open the image file
+            with Image.open(input_path) as img:
+                # Resize the image if necessary
+                if args.width or args.height:
+                    img = img.resize((args.width or img.width, args.height or img.height))
 
-            # Resize the image if necessary
-            if args.width or args.height:
-                img = resize(img, (args.height or img.shape[0], args.width or img.shape[1]))
+                # Save the image in the specified format and quality
+                img.save(output_path, format=args.format, quality=args.quality)
 
-            # Save the image
-            imageio.imsave(output_path, img, quality=args.quality)
+if __name__ == "__main__":
+    main()
