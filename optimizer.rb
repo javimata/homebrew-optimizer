@@ -14,10 +14,10 @@ class Optimizer < Formula
 
     (bin/"optimizr").write <<~EOS
       #!/bin/bash
-      exec "#{libexec}/bin/python3" "#{bin}/optimize_images.py" "$@"
+      exec "#{libexec}/bin/python3" "#{libexec}/optimize_images.py" "$@"
     EOS
 
-    bin.install "optimize_images.py"
+    libexec.install Dir["*"]
   end
 
   test do
