@@ -12,7 +12,7 @@ class Optimizer < Formula
     bin.install "optimize_images.py" => "optimizer"
     (bin/"optimizer").write <<~EOS
       #!/bin/bash
-      exec python3 #{prefix}/optimize_images.py "$@"
+      exec python3 #{bin}/optimizer "$@"
     EOS
   end
 
