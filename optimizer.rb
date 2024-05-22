@@ -8,7 +8,9 @@ class Optimizer < Formula
   license "MIT"
 
   depends_on "python@3.9"
-
+  depends_on "jpeg"
+  depends_on "zlib"
+  
   def install
     venv = virtualenv_create(libexec, "python3")
     venv.pip_install "pillow"
