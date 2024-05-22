@@ -9,10 +9,10 @@ class Optimizer < Formula
   depends_on "python@3.9"
 
   def install
-    bin.install "optimize_images.py" => "optimizr"
+    bin.install "optimize_images.py"
     (bin/"optimizr").write <<~EOS
       #!/bin/bash
-      exec python3 #{bin}/optimizr "$@"
+      exec python3 #{bin}/optimize_images.py "$@"
     EOS
   end
 
