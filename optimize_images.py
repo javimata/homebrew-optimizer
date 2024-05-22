@@ -2,16 +2,7 @@
 
 import os
 import argparse
-from PIL import Image
-
-def optimize_image(input_path, output_path, width, height, quality, format):
-    with Image.open(input_path) as img:
-        # Resize image if width or height are specified
-        if width or height:
-            img = img.resize((width or img.width, height or img.height), Image.ANTIALIAS)
-        
-        # Save image with the specified quality and format
-        img.save(output_path, format=format or img.format, quality=quality)
+import imageio
 
 def main():
     parser = argparse.ArgumentParser(description="Optimize images in the current directory.")
@@ -20,6 +11,7 @@ def main():
     parser.add_argument('-w', '--width', type=int, help="Width to resize images to.")
     parser.add_argument('-t', '--height', type=int, help="Height to resize images to.")
     parser.add_argument('-q', '--quality', type=int, default=85, help="Quality of the optimized images (1-100).")
+    parser.add_argument('--version', action='version', version='%(prog)s 1.0', help="Show program's version number and exit.")
 
     args = parser.parse_args()
     
@@ -35,13 +27,13 @@ def main():
             
             # Determine the output format
             output_format = args.format if args.format else None
-            
-            try:
-                optimize_image(input_path, output_path, args.width, args.height, args.quality, output_format)
-                print(f"Optimized {filename} and saved to {output_path}")
-            except Exception as e:
-                print(f"Failed to optimize {filename}: {e}")
 
-if __name__ == "__main__":
-    main()
+            # Read the image
+            img = imageio.imread(input_path)
 
+            # Resize the image if necessary
+            if args.width or args.height:
+                img = imageio.imresize(img, (args.height or img.shape[0], args.width or img.shape[1]))
+
+            # Save the image
+            imageio.imsave(output_path, img, format=output_format, quality=args.quality)

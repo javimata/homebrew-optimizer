@@ -5,7 +5,6 @@ class Optimizer < Formula
   sha256 "893c8a847342c9338068dca0f93f1a27e4c2449916387725798ee8b476dc09af"
   license "MIT"
 
-  depends_on "pillow"
   depends_on "python@3.9"
 
   def install
@@ -14,6 +13,8 @@ class Optimizer < Formula
       #!/bin/bash
       exec python3 #{bin}/optimize_images.py "$@"
     EOS
+
+    system "pip3", "install", "imageio"
   end
 
   test do
