@@ -1,22 +1,38 @@
-# Optimize Images
+# Optimizer
 
-Optimize Images es una herramienta de línea de comandos para optimizar imágenes en la carpeta actual. Soporta varios formatos de imagen, incluyendo PNG, JPEG, GIF, BMP y WEBP, y permite ajustar la calidad, el tamaño y el formato de salida.
-
-## Características
-
-- Optimiza imágenes en la carpeta actual.
-- Soporta formatos: PNG, JPEG, GIF, BMP y WEBP.
-- Redimensiona imágenes a un ancho y/o alto específico.
-- Ajusta la calidad de las imágenes de salida.
-- Guarda las imágenes optimizadas en un directorio especificado.
+Optimizer es una herramienta que optimiza las imágenes en la carpeta actual.
 
 ## Instalación
 
-### Usando Homebrew
+Primero, necesitas instalar Pillow (PIL). Puedes hacerlo con el siguiente comando:
 
-1. Asegúrate de tener Homebrew instalado. Si no lo tienes, puedes instalarlo siguiendo las instrucciones en [Homebrew](https://brew.sh).
+```
+pip install pillow
+```
 
-2. Añade el tap de Homebrew para este repositorio:
+> Nota: Si tienes problemas para instalar Pillow, puedes encontrar más información en la [documentación oficial de Pillow](https://pillow.readthedocs.io/en/stable/installation.html). el comando puede ser **pip3** o algún otro dependiendo de tu sistema.
 
-   ```bash
-   brew tap javimata/optimizr https://github.com/javimata/optimizr
+Luego, puedes instalar Optimizer con Homebrew usando los siguientes comandos:
+
+```
+brew tap javimata/optimizr https://github.com/javimata/optimizr
+brew install optimizer
+```
+
+## Uso
+
+Puedes ejecutar Optimizer con el siguiente comando:
+
+```
+optimizer
+```
+
+Este comando optimizará todas las imágenes en la carpeta actual.
+
+## Opciones
+
+Actualmente, Optimizer no tiene opciones adicionales. Simplemente optimiza todas las imágenes en la carpeta actual.
+
+## Licencia
+
+Optimizer está licenciado bajo la licencia MIT. Para más detalles, por favor vea el archivo LICENSE en este repositorio.
