@@ -9,14 +9,14 @@ class Optimizer < Formula
   depends_on "pillow"
 
   def install
-    bin.install "optimize_images.py" => "optimizer"
-    (bin/"optimizer").write <<~EOS
+    bin.install "optimize_images.py" => "optimizr"
+    (bin/"optimizr").write <<~EOS
       #!/bin/bash
-      exec python3 #{bin}/optimizer "$@"
+      exec python3 #{bin}/optimizr "$@"
     EOS
   end
 
   test do
-    system "#{bin}/optimizer", "--version"
+    system "#{bin}/optimizr", "--version"
   end
 end
