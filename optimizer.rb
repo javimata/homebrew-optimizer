@@ -10,19 +10,11 @@ class Optimizer < Formula
   depends_on "python@3.9"
 
   def install
-    venv = virtualenv_create(libexec, "python3")
-
-    # Install your script into the virtualenv
-    system venv.pip_install_and_link, buildpath
-
-    # Write out a wrapper script to launch your script
-    (bin/"optimizr").write <<~EOS
-      #!/bin/bash
-      exec "#{libexec}/bin/python3" "#{libexec}/bin/optimize_images.py" "$@"
-    EOS
+    bin.install "optimize_images.py"
+    chmod 0755, "#{bin}/optimize_images.py"
   end
 
   test do
-    system "#{bin}/optimizr", "--version"
+    system "#{bin}/optimize_images.py", "--version"
   end
 end
