@@ -1,4 +1,4 @@
-class Optimize < Formula
+class Optimizer < Formula
   desc "Optimiza imágenes en la carpeta actual"
   homepage "https://github.com/javimata/homebrew-optimizer"
   url "https://github.com/javimata/homebrew-optimizer/releases/download/1.0/optimize_images-1.0.tar.gz"
@@ -8,11 +8,11 @@ class Optimize < Formula
   depends_on "python@3.9"
 
   def install
-    bin.install "optimize_images.py" => "optimize"
-    chmod 0755, "#{bin}/optimize"
+    bin.install "optimize_images.py" => "optimizer"
+    chmod 0755, "#{bin}/optimizer"
   end
 
   test do
-    system "#{bin}/optimize", "--version"
+    system "#{bin}/optimizer", "--version"
   end
 end
