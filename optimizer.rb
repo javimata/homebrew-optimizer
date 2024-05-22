@@ -11,7 +11,6 @@ class Optimizer < Formula
 
   def install
     venv = virtualenv_create(libexec, "python3")
-    venv.pip_install "pillow"
 
     (bin/"optimizr").write <<~EOS
       #!/bin/bash
