@@ -12,12 +12,14 @@ class Optimizer < Formula
   def install
     venv = virtualenv_create(libexec, "python3")
 
+    # Install your script into the virtualenv
+    system venv.pip_install_and_link, buildpath
+
+    # Write out a wrapper script to launch your script
     (bin/"optimizr").write <<~EOS
       #!/bin/bash
-      exec "#{libexec}/bin/python3" "#{libexec}/optimize_images.py" "$@"
+      exec "#{libexec}/bin/python3" "#{libexec}/bin/optimize_images.py" "$@"
     EOS
-
-    libexec.install Dir["*"]
   end
 
   test do
