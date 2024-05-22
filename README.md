@@ -29,9 +29,19 @@ optimizer
 
 Este comando optimizará todas las imágenes en la carpeta actual.
 
-## Opciones
+## Argumentos
 
-Actualmente, Optimizer no tiene opciones adicionales. Simplemente optimiza todas las imágenes en la carpeta actual.
+| Argumento | Descripción | Valor por defecto |
+|-----------|-------------|-------------------|
+| `-h` o `--help` | Muestra el mensaje de ayuda y termina el programa. | N/A |
+| `-v` o `--version` | Muestra la versión del programa y termina. | N/A |
+| `-o` o `--output_dir` | Directorio de salida para guardar las imágenes optimizadas. | `out` |
+| `-f` o `--format` | Formato para guardar las imágenes (por ejemplo, 'JPEG', 'PNG'). | N/A |
+| `-w` o `--width` | Ancho para redimensionar las imágenes. | N/A |
+| `-t` o `--height` | Altura para redimensionar las imágenes. | N/A |
+| `-q` o `--quality` | Calidad de las imágenes optimizadas (1-100). | `85` |
+| `-r` o `--report` | Muestra el informe de optimización. | `True` |
+| `-n` o `--nooverwrite` | No sobrescribir los archivos existentes. | `False` |
 
 ## Licencia
 
