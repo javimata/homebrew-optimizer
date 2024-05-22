@@ -2,7 +2,7 @@ class Optimizer < Formula
   desc "Optimiza imágenes en la carpeta actual"
   homepage "https://github.com/javimata/homebrew-optimizer"
   url "https://github.com/javimata/homebrew-optimizer/releases/download/1.0/optimize_images-1.0.tar.gz"
-  sha256 "893c8a847342c9338068dca0f93f1a27e4c2449916387725798ee8b476dc09af"
+  sha256 "1ddbdbecdc808daf8a3f0723b719c9d5a3d6e9bd50c36bfaa6e8a6e31ff74679"
   license "MIT"
 
   depends_on "python@3.9"
